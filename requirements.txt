@@ -1,0 +1,8 @@
+Flask                    2.2.3
+Flask-SQLAlchemy         3.0.3
+Flask-WTF                1.1.1
+fpdf                     1.7.2
+Jinja2                   3.1.2
+pyttsx3                  2.90
+PyMuPDF                  1.21.1	
+pdfreader                0.1.12

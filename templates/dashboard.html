@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <h1>Welcome to the Dashboard</h1>
+    <button id="logout-button">Logout</button>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            {% comment %} config-here {% endcomment %}
+        };
+        firebase.initializeApp(firebaseConfig);
+        const logoutButton = document.getElementById('logout-button');
+        logoutButton.addEventListener('click', () => {
+        firebase.auth().signOut()
+          .then(() => {
+            fetch('/logout', {
+              method: 'GET'
+            })
+              .then(() => {
+                window.location.href = '/login';
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    </script>
+  </body>
+</html>

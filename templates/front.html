@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Braille Heads</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css" integrity="sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% with messages = get_flashed_messages() %}
+		      {% if messages %}
+			      {% for message in messages %}
+				      <script>alert('{{ message }}');</script>
+			      {% endfor %}
+		      {% endif %}
+	      {% endwith %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Braille Heads</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="mailto:sahel22.vis@gmail.com?subject=My%20Email%20Subject&body=Hi%20Sahel,">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+         Curent File: <span id="name"></span>
+          <script>
+              const name = "{{ name }}";  // Get the name of pdf from Flask
+              document.getElementById("name").textContent = name;  
+          </script>
+        <h1 class='container text-center' align='c'>BRAILLE</h1>
+        <div class='container'><br><br></div>
+        <form method="POST" action="/upload_pdf" enctype="multipart/form-data">
+            <div class='container text-center'>
+                <label for="#f">Choose Pdf:</label>
+                <input type='file' id="f" name="pdf_file" accept=".pdf"></input>
+                <br><br><button class='text-center' type="submit">Upload</button>
+            </div>
+        </form>
+        <br><div class='container text-center'>
+          <button onclick="window.location.href='/cnvt'">Convert to Braille</button>
+          <button onclick="window.location.href='/send_mp3'">Download MP3</button>
+        </div>
+        
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+          </ol>
+          <br><br><div class='container d-flex justify-content-center'><h3>SMART EDUCATION!</h3></div><br>
+          <div class='container d-flex justify-content-center'>
+            <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://developers.google.com/community/gdsc/images/gdsc-social-share.png" class="d-block w-100" alt="Please connect the internet">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://www.afb.org/serve/media/8042" class="d-block w-100" alt="Please connect the internet">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://cdn.britannica.com/32/152532-050-4B5644E3/Reading-Braille.jpg" class="d-block w-100" alt="Please connect the internet">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://ingeniumcanada.org/sites/default/files/inline-images/braille_diagram.jpg" class="d-block w-100" alt="Please connect the internet">
+                </div>
+              </div>
+            
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+        </div>
+        
+
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Braille Heads</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>We Are Braille Heads. Always assisting the Blind!</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-4">
+              <div class="card shadow-sm mb-4">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Contact Us</h5>
+                  <p class="card-text">Connect with us on social media</p>
+                  <div class="d-flex justify-content-around">
+                    <a href="#" class="btn btn-primary btn-lg"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="btn btn-info btn-lg" ><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="https://wa.me" class="btn btn-success btn-lg" rel="noopener noreferrer" target="_blank"><i class="fab fa-whatsapp fa-lg"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>

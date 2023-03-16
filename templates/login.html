@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form id="login-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><br>
+      <button type="submit">Login</button>
+    </form>
+    <div id="error-message"></div>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+    <script>
+    const firebaseConfig = {
+       {% comment %} config-here {% endcomment %}
+    };
+    firebase.initializeApp(firebaseConfig);
+    const loginForm = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = loginForm.email.value;
+      const password = loginForm.password.value;
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const idToken = userCredential.user.getIdToken();
+          fetch('/authenticate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password, idToken })
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.href = '/dashboard';
+            })
+            .catch((error) => {
+              errorMessage.textContent = 'Invalid email or password';
+            });
+        })
+        .catch((error) => {
+          errorMessage.textContent = 'Invalid email or password';
+        });
+    });
+  </script>
+</body>
+</html>      
+    
