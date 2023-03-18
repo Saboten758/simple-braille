@@ -5,5 +5,5 @@ python server.py
 ```
 This needs a windows machine to work, as the text to speech uses win32com.client for Co-Initializing. To install all the requirements create a virtual-env and run:
 ```python
- python -r requirements.txt 
+pip install -r requirements.txt 
 ```
